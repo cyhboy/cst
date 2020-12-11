@@ -12,3 +12,7 @@ SetupMethod3 --> 包含实现自动化的关键代码。
 Engineer1 --> 对之前的代码及未来的代码实现回归测试，预先发现一些人为的错误在发布之前。
 
 Engineer2 --> 收集一些代码信息针对未来的优化和迭代。
+
+![template.png](template.png "template.png")
+
+![ver.png](ver.png "ver.png")
