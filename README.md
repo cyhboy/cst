@@ -13,13 +13,8 @@ Engineer1 --> 对之前的代码及未来的代码实现回归测试，预先发
 
 Engineer2 --> 收集一些代码信息针对未来的优化和迭代。
 
-<<<<<<< HEAD
+附上一些图片也许更直观一些
 ![template.png](template.png "template.png")
 
 ![ver.png](ver.png "ver.png")
-=======
 
-附上一些图片也许更直观一些
-
-
->>>>>>> 139f6b220b221c78f566b9e24120414894ed3ec9
