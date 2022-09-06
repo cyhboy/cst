@@ -10,6 +10,6 @@ Public Sub CreTitl()
         If Trim(Cells(1, i + 1)) = "" Then
             Cells(1, i + 1) = titlAry(i)
         End If
-        Next
+    Next i
 End Sub
 

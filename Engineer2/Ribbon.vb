@@ -54,7 +54,7 @@ Public Sub Ribbon()
 
                     ActiveSheet.Cells(i, 15) = "'" & LPad((i - 1) & "", 4, "0")
 
-                    ActiveSheet.Cells(i, 16) = "Proc2Fil #Proc2Md"
+                    ActiveSheet.Cells(i, 16) = "#Proc2Fil TagProc #Proc2Md"
                     ActiveSheet.Cells(i, 17) = "ONGOING"
 
                     i = i + 1

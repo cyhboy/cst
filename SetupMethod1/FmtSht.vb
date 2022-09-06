@@ -1,6 +1,8 @@
 
 Public Sub FmtSht()
-    If testing Then Exit Sub
+    If testing Then
+        Exit Sub
+    End If
     Call CreTitl
     Range("A2").Select
     Call FitScr

@@ -36,9 +36,9 @@ Public Sub FitScr(Optional control As IRibbonControl)
             End If
 
         End With
-        Next
+    Next i
 
-        MyMsgBox "Total fill windows rate --> " & sumDbl, 5000
+    MyMsgBox "Total fill windows rate --> " & sumDbl, 5000
 
 End Sub
 
