@@ -1,5 +1,8 @@
 
 Public Function CountRegx(text As String, patt As String) As Long
+'    If testing Then
+'        Exit Function
+'    End If
     On Error GoTo ErrorHandler
     Dim RE As New RegExp
     RE.Pattern = patt
@@ -10,7 +13,7 @@ Public Function CountRegx(text As String, patt As String) As Long
     Dim Matches As MatchCollection
     Set Matches = RE.Execute(text)
     'Return the corrected count of matches
-    CountRegx = Matches.Count
+    CountRegx = Matches.count
 ErrorHandler:
     If Err.Number <> 0 Then
         MyMsgBox Err.Number & " " & Err.Description, 30

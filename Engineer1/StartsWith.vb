@@ -1,6 +1,8 @@
 
 Public Function StartsWith(str As String, start As String) As Boolean
-    'If testing Then Exit Function
+'    If testing Then
+'        Exit Function
+'    End If
     str = CStr(str)
     start = CStr(start)
     Dim startLen As Integer
