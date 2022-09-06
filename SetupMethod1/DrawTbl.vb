@@ -1,11 +1,14 @@
 
 Public Sub DrawTbl()
-    If testing Then Exit Sub
+    If testing Then
+        Exit Sub
+    End If
+
     Range("A1").Select
     Range(Selection, Selection.End(xlToRight)).Select
-    
+
     Call InsCnoSlt
-    
+
     Selection.Font.Bold = True
     With Selection.Interior
         .Pattern = xlSolid
@@ -14,11 +17,11 @@ Public Sub DrawTbl()
         .TintAndShade = 0
         .PatternTintAndShade = 0
     End With
-    
+
     If Range("A2") <> "" Then
         Range(Selection, Selection.End(xlDown)).Select
     End If
-    
+
     Selection.Borders(xlDiagonalDown).LineStyle = xlNone
     Selection.Borders(xlDiagonalUp).LineStyle = xlNone
     With Selection.Borders(xlEdgeLeft)
@@ -57,7 +60,7 @@ Public Sub DrawTbl()
         .TintAndShade = 0
         .Weight = xlThin
     End With
-    
+
     With Selection
         .HorizontalAlignment = xlGeneral
         .VerticalAlignment = xlTop
@@ -80,12 +83,12 @@ Public Sub DrawTbl()
         .ReadingOrder = xlContext
         .MergeCells = False
     End With
-    
+
     Rows("1:1").Select
     If Range("A2") <> "" Then
         Range(Selection, Selection.End(xlDown)).Select
     End If
     Selection.RowHeight = 25
-    
+
 End Sub
 

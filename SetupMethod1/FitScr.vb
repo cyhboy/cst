@@ -1,11 +1,14 @@
 
 Public Sub FitScr(Optional control As IRibbonControl)
-    If testing Then Exit Sub
+    If testing Then
+        Exit Sub
+    End If
+
     Application.WindowState = xlMaximized
     ActiveWindow.WindowState = xlMaximized
     Dim zoom As Double
     zoom = ActiveWindow.zoom
-    
+
     Dim ww As Double
     Dim w As Double
     Dim cw As Double
@@ -25,17 +28,17 @@ Public Sub FitScr(Optional control As IRibbonControl)
             w = .Width
             cw = .ColumnWidth
             x = ww * cw * 100 * ratioAry(i - 1) / w / zoom
-            
+
             If x < 255 Then
                 .ColumnWidth = x
             Else
                 .ColumnWidth = 255
             End If
-            
-        End With
-    Next
 
-    MyMsgBox "Total fill windows rate --> " & sumDbl, 5000
+        End With
+        Next
+
+        MyMsgBox "Total fill windows rate --> " & sumDbl, 5000
 
 End Sub
 

@@ -37,7 +37,7 @@ Public Sub RunAppParam(isHold As Boolean, isTest As Boolean, isKeep As Boolean)
         Dim propsMap As Variant
         Set propsMap = ReadPropertyInAppFiles("identity.ini")
         path = "PsExec -u GUANGZHOUTEST\" & Environ$("username") & " -p " & propsMap("AD_PASSWORD_UAT") & " " & path
-        MsgBox path
+        'MsgBox path
         ShellRunHide path
     Else
         ShellRun path, isKeep
