@@ -1,6 +1,8 @@
 
 Public Function GetWorkbookProperties(ByVal filePath As String, ByVal propName As String)
-    If testing Then Exit Function
+    If testing Then
+        Exit Function
+    End If
     Dim retvalue As String
     Dim appOffice As New Application
     Dim richFile As Workbook
