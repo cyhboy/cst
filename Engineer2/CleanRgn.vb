@@ -1,8 +1,10 @@
 
 Public Sub CleanRgn()
-    If testing Then Exit Sub
+    If testing Then
+        Exit Sub
+    End If
     ActiveCell.CurrentRegion.Select
-    If Selection.Rows.Count > 1 Then
+    If Selection.Rows.count > 1 Then
         Call UnSltTitle
         Selection.ClearContents
     End If

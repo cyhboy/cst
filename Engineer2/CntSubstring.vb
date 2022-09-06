@@ -1,7 +1,9 @@
 
 Public Function CntSubstring(text As String, subStr As String, Optional ignoreFlag As Boolean = False) As Long
-    If testing Then Exit Function
-    
+    If testing Then
+        Exit Function
+    End If
+
     If ignoreFlag Then
         CntSubstring = (Len(UCase(text)) - Len(Replace(UCase(text), UCase(subStr), ""))) / Len(UCase(subStr))
     Else

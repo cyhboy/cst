@@ -1,6 +1,8 @@
 
 Public Sub UnSltTitle()
-    If testing Then Exit Sub
+    If testing Then
+        Exit Sub
+    End If
     Dim R As Range
     Dim RR As Range
     For Each R In Selection.Cells

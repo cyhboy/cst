@@ -1,6 +1,8 @@
 
 Public Function MatchRegx(text As String, patt As String, Optional ignoreC As Boolean = False) As Boolean
-    If testing Then Exit Function
+    If testing Then
+        Exit Function
+    End If
     'Set up regular expression object
     Dim RE As New RegExp
     RE.Pattern = patt
@@ -11,7 +13,7 @@ Public Function MatchRegx(text As String, patt As String, Optional ignoreC As Bo
     Dim Matches As MatchCollection
     Set Matches = RE.Execute(text)
     'Return the corrected count of matches
-    If Matches.Count > 0 Then
+    If Matches.count > 0 Then
         MatchRegx = True
     Else
         MatchRegx = False

@@ -1,11 +1,13 @@
 
 Public Sub VldUI()
-    If testing Then Exit Sub
+    If testing Then
+        Exit Sub
+    End If
     'On Error GoTo ErrorHandler
     Dim n As Integer
-    n = Selection.Count
+    n = Selection.count
     If n > 1 Then
-        n = Selection.SpecialCells(xlCellTypeVisible).Count
+        n = Selection.SpecialCells(xlCellTypeVisible).count
     End If
     If n > 1 Then
         Dim curCell As Range
@@ -18,29 +20,29 @@ Public Sub VldUI()
         Next curCell
         Exit Sub
     End If
-    
+
     Dim currentRow As Integer
     currentRow = ActiveCell.Row
-    
+
     Dim procName As String
 
     procName = Cells(currentRow, 2)
 
-    
+
     Dim XCMFILE As Variant
 
     Dim buttonActionName As String
 
     Dim nod As IXMLDOMNode
 
-    
+
     Set XCMFILE = CreateObject("Microsoft.XMLDOM")
-    
+
     XCMFILE.Load ("C:\Users\" & Environ$("username") & "\AppData\Local\Microsoft\Office\Excel.officeUI") 'Load XCM File
-    
+
     For Each nod In XCMFILE.SelectNodes("//mso:customUI/mso:ribbon/mso:tabs/mso:tab/mso:group/mso:button")
         buttonActionName = nod.Attributes.getNamedItem("onAction").text 'Search for id attribute within node
-        If EndsWith(buttonActionName, "!" & procName) Then
+        If EndsWith(buttonActionName, "!" & procName) Or buttonActionName = procName Then
             Cells(currentRow, 6) = nod.Attributes.getNamedItem("label").text
             Cells(currentRow, 5) = nod.ParentNode.Attributes.getNamedItem("label").text
             Cells(currentRow, 4) = nod.ParentNode.ParentNode.Attributes.getNamedItem("label").text
@@ -51,11 +53,11 @@ Public Sub VldUI()
             Cells(currentRow, 5) = "N/A"
             Cells(currentRow, 4) = "N/A"
         End If
-    Next
-    
+    Next nod
+
     For Each nod In XCMFILE.SelectNodes("//mso:customUI/mso:ribbon/mso:tabs/mso:tab/mso:group/mso:menu/mso:button")
         buttonActionName = nod.Attributes.getNamedItem("onAction").text 'Search for id attribute within node
-        If EndsWith(buttonActionName, "!" & procName) Then
+        If EndsWith(buttonActionName, "!" & procName) Or buttonActionName = procName Then
             Cells(currentRow, 7) = nod.Attributes.getNamedItem("label").text
             Cells(currentRow, 6) = nod.ParentNode.Attributes.getNamedItem("label").text
             Cells(currentRow, 5) = nod.ParentNode.ParentNode.Attributes.getNamedItem("label").text
@@ -68,8 +70,8 @@ Public Sub VldUI()
             Cells(currentRow, 5) = "N/A"
             Cells(currentRow, 4) = "N/A"
         End If
-    Next
-    
+    Next nod
 
 End Sub
+
 
