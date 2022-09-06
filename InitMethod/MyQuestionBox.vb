@@ -1,6 +1,9 @@
 
 Public Sub MyQuestionBox(detail As String, answer1 As String, answer2 As String, duration As Long)
-    If testing Then Exit Sub
+    If testing Then
+        Exit Sub
+    End If
+
     nexttime = Now() + TimeSerial(0, 0, duration)
     Application.OnTime nexttime, "MyQuestionBoxHide"
     confirmation = ""
@@ -9,7 +12,7 @@ Public Sub MyQuestionBox(detail As String, answer1 As String, answer2 As String,
     'UserForm2.TextBox1.text = detail
     'UserForm2.TextBox1.SetFocus
     'UserForm2.Show
-    
+
     Set uf2 = New UserForm2
     uf2.CommandButton1.Caption = answer1
     uf2.CommandButton2.Caption = answer2

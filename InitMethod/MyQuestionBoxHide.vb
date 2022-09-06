@@ -1,6 +1,9 @@
 
 Public Sub MyQuestionBoxHide()
-    If testing Then Exit Sub
+    If testing Then
+        Exit Sub
+    End If
+
     'confirmation = UserForm2.CommandButton1.Caption
     'UserForm2.Hide
     confirmation = uf2.CommandButton1.Caption
