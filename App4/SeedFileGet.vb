@@ -1,6 +1,9 @@
 
 Public Function SeedFileGet(filePath As String) As String
-    If testing Then Exit Function
+    If testing Then
+        Exit Function
+    End If
+
     Dim seedFilePath As String
     Dim fileName As String
     Dim ext As String
@@ -12,4 +15,5 @@ Public Function SeedFileGet(filePath As String) As String
     End If
     SeedFileGet = fileName & ext
 End Function
+
 
