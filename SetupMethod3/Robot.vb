@@ -1,12 +1,14 @@
 
 Public Sub Robot(Optional control As IRibbonControl)
-    If testing Then Exit Sub
-    
+    If testing Then
+        Exit Sub
+    End If
+
     'On Error GoTo ErrorHandler
     Dim n As Integer
-    n = Selection.Count
+    n = Selection.count
     If n > 1 Then
-        n = Selection.SpecialCells(xlCellTypeVisible).Count
+        n = Selection.SpecialCells(xlCellTypeVisible).count
     End If
     If n > 1 Then
         Dim curCell As Range
@@ -21,9 +23,9 @@ Public Sub Robot(Optional control As IRibbonControl)
     End If
 
     Dim mycll As Excel.Range
-    
+
     Set mycll = ActiveCell
-    
+
     Dim comms As String
     'Dim interval As Long
 
@@ -31,14 +33,14 @@ Public Sub Robot(Optional control As IRibbonControl)
     currentRow = ActiveCell.Row
     comms = Cells(currentRow, 16)
 
-    Dim arr
+    Dim arr As Variant
     arr = Split(comms, " ")
-    
+
     Dim i As Integer
-    
+
     Dim tmp_comm As String
     Dim comm As String
-    
+
     For i = 0 To UBound(arr)
         tmp_comm = comm
         comm = arr(i)
@@ -48,13 +50,13 @@ Public Sub Robot(Optional control As IRibbonControl)
             End If
             RobotRunByParam comm
         End If
-    Next
+    Next i
 
     Exit Sub
-    
-'ErrorHandler:
-'    If Err.Number <> 0 Then
-'       MyMsgBox Err.Number & " " & Err.Description, 30
-'    End If
+
+    'ErrorHandler:
+    '    If Err.Number <> 0 Then
+    '       MyMsgBox Err.Number & " " & Err.Description, 30
+    '    End If
 End Sub
 
