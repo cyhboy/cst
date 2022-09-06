@@ -1,15 +1,19 @@
 
 Public Function ReadPropertyInAppFiles(fileName As String)
-    If testing Then Exit Function
-    Dim fso, sPFSpec, dicProps, oTS, sSect
-    
+    If testing Then
+        Exit Function
+    End If
+
+    Dim fso, dicProps, oTS As Variant
+    Dim sPFSpec, sSect As String
+
     Set fso = CreateObject("Scripting.FileSystemObject")
     sPFSpec = GetAppDrive() & "\" & fileName
     'MsgBox sPFSpec
     Set dicProps = CreateObject("Scripting.Dictionary")
     Set oTS = fso.OpenTextFile(sPFSpec)
     sSect = ""
-    
+
     Do Until oTS.AtEndOfStream
         Dim sLine: sLine = Trim(oTS.readline)
         If "" <> sLine Then
@@ -17,7 +21,7 @@ Public Function ReadPropertyInAppFiles(fileName As String)
                 sSect = sLine
             Else
                 If "" = sSect Then
-                
+
                 Else
                     Dim aParts: aParts = Split(sLine, "=")
                     If 2 = UBound(aParts) Then

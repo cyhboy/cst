@@ -1,6 +1,8 @@
 
 Public Sub RunAppI()
-    If testing Then Exit Sub
-    RunAppParam False, False
+    If testing Then
+        Exit Sub
+    End If
+    RunAppParam False, False, False
 End Sub
 

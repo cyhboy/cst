@@ -1,11 +1,13 @@
 
 Public Sub Robn()
-    If testing Then Exit Sub
-    
+    If testing Then
+        Exit Sub
+    End If
+
     Dim n As Integer
-    n = Selection.Count
+    n = Selection.count
     If n > 1 Then
-        n = Selection.SpecialCells(xlCellTypeVisible).Count
+        n = Selection.SpecialCells(xlCellTypeVisible).count
     End If
     If n > 1 Then
         Dim curCell As Range
@@ -18,24 +20,24 @@ Public Sub Robn()
         Next curCell
         Exit Sub
     End If
-    
+
     Dim currentRow As Integer
     currentRow = ActiveCell.Row
-    
+
     Dim actions As String
     actions = Cells(currentRow, 16)
-    
+
     Dim action As String
-    
+
     If CntSubstring(actions, " #") = 1 Then
         action = CutStringByStartAndEnd(actions, " #", " #")
         If InStr(action, " ") = 0 Then
             actions = Replace(actions, " FXplr", " #FXplr")
-            Call Robot
+            'Call Robot
             RobotRunByParam action
         End If
     Else
-        
+
     End If
 End Sub
 

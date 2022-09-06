@@ -1,9 +1,12 @@
 
 Public Function CutStringByStartAndEnd(orgStr As String, startStr As String, endStr As String)
-    If testing Then Exit Function
+    If testing Then
+        Exit Function
+    End If
+
     Dim startPos As String
     Dim startLen As String
-    
+
     If InStr(orgStr, startStr) > 0 Then
         startPos = InStr(orgStr, startStr) + Len(startStr)
         If InStr(startPos, orgStr, endStr) > startPos Then
