@@ -1,6 +1,9 @@
 
 Public Function GetBakDrive() As String
-    If testing Then Exit Function
+    If testing Then
+        Exit Function
+    End If
+
     Dim bakDrive As String
     Dim fso As Object
     Set fso = CreateObject("Scripting.FileSystemObject")
@@ -8,7 +11,7 @@ Public Function GetBakDrive() As String
     If InStr(bakDrive, ":") = 0 Then
         bakDrive = "C:" & "\BAK"
     End If
-    
+
     If InStr(bakDrive, "D:") > 0 Or InStr(bakDrive, "d:") > 0 Then
         bakDrive = "C:" & "\BAK"
     End If
