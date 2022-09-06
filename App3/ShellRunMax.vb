@@ -1,6 +1,8 @@
 
 Public Sub ShellRunMax(cmd As String)
-    If testing Then Exit Sub
+    If testing Then
+        Exit Sub
+    End If
     'vbHide 0 Window is hidden and focus is passed to the hidden window. The vbHide constant is not applicable on Macintosh platforms.
     'vbNormalFocus 1 Window has focus and is restored to its original size and position.
     'vbMinimizedFocus 2 Window is displayed as an icon with focus.
