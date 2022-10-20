@@ -192,7 +192,7 @@ Public Sub TestVBA()
     resultStr = resultStr & "Total Sub8 Testing Count " & subCount8 & vbCrLf
     resultStr = resultStr & "Total SubX Not Testing Count " & subCountX & vbCrLf
 
-    resultStr = resultStr & "Total Sub Count " & (subCount0 + subCount1 + subCount2 + subCount3 + subCount4 + subCount5 + subCount6 + subCount7 + subCount8 + subCountX) & vbCrLf & vbCrLf
+resultStr = resultStr & "Total Sub Count " & (subCount0 + subCount1 + subCount2 + subCount3 + subCount4 + subCount5 + subCount6 + subCount7 + subCount8 + subCountX) & vbCrLf & vbCrLf
 
     resultStr = resultStr & "Total Func0 Testing Count " & funcCount0 & vbCrLf
     resultStr = resultStr & "Total Func1 Testing Count " & funcCount1 & vbCrLf

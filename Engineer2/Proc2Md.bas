@@ -171,10 +171,10 @@ ContinueLoop:
 
     Dim folderSrc As String
     Dim folderMd As String
-    folderSrc = "C:\SANDBOX\VB_SPACE\GIT_CST_MD\" & Format(Now, "yyyyMMdd") & "\" & module & "\"
+    folderSrc = "C:\SANDBOX\VB_SPACE\GIT_CST_PROJECT\" & Format(Now, "yyyyMMdd") & "\" & module & "\"
     'folderSrc = "C:\SANDBOX\VB_SPACE\GIT_CST_MD\" & Format(Now, "yyyyMMddHHmm") & "\" & module & "\"
-    folderMd = "C:\MD_SPACE\" & module & "\"
-
+    'folderMd = "C:\MD_SPACE\" & module & "\"
+    folderMd = "C:\SANDBOX\VB_SPACE\GIT_CST_MD_PROJECT\" & Format(Now, "yyyyMMdd") & "\" & module & "\"
     CreateFolder folderSrc
     CreateFolder folderMd
 

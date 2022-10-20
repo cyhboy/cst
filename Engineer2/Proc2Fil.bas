@@ -66,7 +66,7 @@ Public Sub Proc2Fil()
 
     CreateFolder folder
 
-    WriteTxt2Tmp resultStr, folder & subb & ".vb"
+    WriteTxt2Tmp resultStr, folder & subb & ".bas"
 ErrorHandler:
     If Err.Number <> 0 Then
         MyMsgBox Err.Number & " " & Err.Description, 5
