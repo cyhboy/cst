@@ -1,5 +1,5 @@
 
-Public Sub DlParam(Hold As Boolean)
+Public Sub XftpParam(Hold As Boolean)
     If testing Then
         Exit Sub
     End If
@@ -12,13 +12,11 @@ Public Sub DlParam(Hold As Boolean)
     Dim parameter As String
     Dim currentRow As Integer
 
-    ' path = GetAppDrive() & "\ptty\pscp.exe -i C:\AppFiles\ptty\myPri.ppk"
-    path = GetAppDrive() & "\ptty\pscp.exe "
-
+    path = GetAppDrive() & "\WinSCP\WinSCP.exe "
     currentRow = ActiveCell.Row
 
-    Dim hn As String
-    hn = Cells(currentRow, 2)
+    Dim fqdn As String
+    fqdn = Cells(currentRow, 2)
 
     Dim uid As String
     uid = Cells(currentRow, 3)
@@ -39,6 +37,15 @@ Public Sub DlParam(Hold As Boolean)
         port = "22"
     End If
 
+    Dim ppkPath As String: ppkPath = ""
+    Dim ppkFile As String
+    ppkFile = Cells(currentRow, 14)
+    If EndsWith(ppkFile, ".ppk") Or ppkFile = "private_key" Then
+        Dim ppkFolder As String
+        ppkFolder = Cells(currentRow, 13)
+        ppkPath = ppkFolder & ppkFile
+    End If
+
     Dim fileOrFolder As String
     fileOrFolder = Cells(currentRow, 5)
 
@@ -50,11 +57,8 @@ Public Sub DlParam(Hold As Boolean)
 
     fileOrFolder = Left(fileOrFolder, index)
 
-    fileOrFolder = fileOrFolder & Cells(currentRow, 11)
-
     Dim localFolder As String
     localFolder = Cells(currentRow, 9)
-
     If EndsWith(localFolder, "\") Then
         localFolder = Left(localFolder, Len(localFolder) - 1)
     End If
@@ -68,11 +72,18 @@ Public Sub DlParam(Hold As Boolean)
         pass = propsMap("AD_PASSWORD")
     End If
 
-    If pass = "" Then
-        parameter = " -sftp -l " & uid & " -P " & port & " -p """ & hn & ":" & fileOrFolder & """ """ & localFolder & """"
-    Else
-        parameter = " -sftp -l " & uid & " -pw " & pass & " -P " & port & " -p """ & hn & ":" & fileOrFolder & """ """ & localFolder & """"
+    parameter = "sftp://" & uid & ":" & pass & "@" & fqdn & ":" & port & fileOrFolder
+
+    If ppkPath <> "" Then
+        parameter = "sftp://" & uid & "@" & fqdn & ":" & port & fileOrFolder & " /privatekey=" & ppkPath
     End If
+
+    If URLEncode(localFolder) <> ReadIniFileString("Configuration\Interface\Commander\LocalPanel", "LastPath") Then
+        'MsgBox URLEncode(localFolder)
+        'MsgBox ReadIniFileString("Configuration\Interface\Commander\LocalPanel", "LastPath")
+        MsgBox WriteIniFileString("Configuration\Interface\Commander\LocalPanel", "LastPath", URLEncode(localFolder))
+    End If
+
     'MsgBox path & parameter
     'Exit Sub
 
@@ -83,13 +94,13 @@ ErrorHandler:
         MyMsgBox Err.Number & " " & Err.Description, 30
     End If
 
-    If Hold Then
-        Dim exeName As String: exeName = ExtractEXE(path)
-        While True = IsExeRunning(exeName)
-            Sleep 3000
-            'ShellRun path & " --close"
-        Wend
-    End If
+    '    If Hold Then
+    '        Dim exeName As String: exeName = ExtractEXE(path)
+    '        While True = IsExeRunning(exeName)
+    '            Sleep 10000
+    '            ShellRun path & "--close", False
+    '        Wend
+    '    End If
 
 End Sub
 

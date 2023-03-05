@@ -1,5 +1,5 @@
 
-Public Function ReadLineByFile(fileName As String)
+Public Function ReadLineByFile(filename As String)
     If testing Then
         Exit Function
     End If
@@ -11,7 +11,7 @@ Public Function ReadLineByFile(fileName As String)
     Dim readResult As String
 
     Set fso = CreateObject("Scripting.FileSystemObject")
-    Set fro = fso.OpenTextFile(fileName, ForReading)
+    Set fro = fso.OpenTextFile(filename, ForReading)
 
     readResult = fro.readall
 

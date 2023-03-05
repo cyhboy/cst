@@ -21,14 +21,14 @@ Public Sub ConVA()
     End If
 
     Dim localFolder As String
-    Dim fileName As String
+    Dim filename As String
     Dim orgFileName As String
     Dim videoFileName, audioFileName As String
     Dim currentRow As Integer
     currentRow = ActiveCell.Row
     localFolder = Cells(currentRow, 9)
-    fileName = Cells(currentRow, 13)
-    orgFileName = Left(fileName, InStrRev(fileName, ".") - 1)
+    filename = Cells(currentRow, 13)
+    orgFileName = Left(filename, InStrRev(filename, ".") - 1)
     Dim fileList As Variant
     fileList = GetFileList(localFolder & orgFileName & ".f*")
 
@@ -37,7 +37,7 @@ Public Sub ConVA()
     End If
 
     Dim fileSize As Double
-    fileSize = 1.79769313486231E+308
+    fileSize = 0
 
     Dim fso As Object
     Set fso = CreateObject("Scripting.FileSystemObject")
@@ -46,23 +46,27 @@ Public Sub ConVA()
 
     For Each myFile In fileList
         Set myFileObj = fso.GetFile(localFolder & CStr(myFile))
-        If FileLen(localFolder & CStr(myFile)) < fileSize Then
+        If FileLen(localFolder & CStr(myFile)) > fileSize Then
+            audioFileName = videoFileName
+            videoFileName = myFileObj.Name
+            fileSize = FileLen(localFolder & CStr(myFile))
+        Else
             videoFileName = audioFileName
             audioFileName = myFileObj.Name
-            fileSize = FileLen(localFolder & CStr(myFile))
         End If
     Next myFile
     Set fso = Nothing
 
     Dim cmdStr As String
+
     ' MsgBox GetVideoDuration(localFolder & videoFileName)
     ' MsgBox IsNumeric(GetVideoDuration(localFolder & videoFileName))
     If IsNumeric(GetVideoDuration(localFolder & videoFileName)) And 1 <> 1 Then
         ' Never go here as I found copy merge also can fail on a normal case
-        cmdStr = "ffmpeg -y -i """ & localFolder & videoFileName & """ -i """ & localFolder & audioFileName & """ -c copy """ & localFolder & fileName & """"
+        cmdStr = "ffmpeg -y -i """ & localFolder & videoFileName & """ -i """ & localFolder & audioFileName & """ -c copy """ & localFolder & filename & """"
     Else
         ' cmdStr = "ffmpeg -y -i """ & localFolder & videoFileName & """ -i """ & localFolder & audioFileName & """ -c copy -map 0:v -map 1:a -shortest -af apad """ & localFolder & fileName & """"
-        cmdStr = "ffmpeg -y -i """ & localFolder & videoFileName & """ -i """ & localFolder & audioFileName & """ -af apad -shortest """ & localFolder & fileName & """"
+        cmdStr = "ffmpeg -y -i """ & localFolder & videoFileName & """ -i """ & localFolder & audioFileName & """ -af apad -shortest """ & localFolder & filename & """"
     End If
     ' MsgBox cmdStr
     ShellRun cmdStr, True

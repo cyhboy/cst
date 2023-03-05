@@ -5,8 +5,8 @@ Public Sub Tch()
     End If
     Dim currentRow As Integer
     currentRow = ActiveCell.Row
-    Dim fileName As String
-    fileName = Cells(currentRow, 11)
+    Dim filename As String
+    filename = Cells(currentRow, 11)
     Dim localFolder As String
     localFolder = Cells(currentRow, 9)
     Dim txtValue As String
@@ -17,8 +17,8 @@ Public Sub Tch()
     Dim filePath1 As String
     filePath1 = "C:\AppFiles\linux.txt"
     Dim result As String
-    If Not fso.fileexists(localFolder & fileName) Then
-        result = fso.copyfile(filePath1, localFolder & fileName)
+    If Not fso.fileexists(localFolder & filename) Then
+        result = fso.copyfile(filePath1, localFolder & filename)
         If result = "" Then
             MsgBox "copied linux file done"
         End If

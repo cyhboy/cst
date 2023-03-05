@@ -1,5 +1,5 @@
 
-Public Function ShellRunResult(cmd As String, Optional cmdLogFile As String = "C:\BAK\cmd.log", Optional hold As Boolean = True)
+Public Function ShellRunResult(cmd As String, Optional cmdLogFile As String = "C:\BAK\cmd.log", Optional Hold As Boolean = True)
     If testing Then
         Exit Function
     End If
@@ -23,8 +23,8 @@ Public Function ShellRunResult(cmd As String, Optional cmdLogFile As String = "C
     Shell path, vbNormalFocus
     'Shell path, vbHide
 
-    If hold Then
-        While hold
+    If Hold Then
+        While Hold
             Dim cntEXE2 As Integer
             cntEXE2 = CntExeRunning(ExtractEXE(path))
             If InStr(path, " npm ") > 0 Then
@@ -34,7 +34,7 @@ Public Function ShellRunResult(cmd As String, Optional cmdLogFile As String = "C
             If cntEXE2 - cntEXE > 0 Then
                 Sleep 3000
             Else
-                hold = False
+                Hold = False
             End If
         Wend
         'If cntEXE = 0 Then

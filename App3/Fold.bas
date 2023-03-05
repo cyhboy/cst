@@ -36,7 +36,7 @@ Public Sub Fold()
     ' Enhanced for youtube-dl
     Dim command As String
     command = Cells(currentRow, 10)
-    If InStr(command, "youtube-dl") > 0 Then
+    If InStr(command, "youtube-dl") > 0 Or InStr(command, "yt-dlp") > 0 Then
 
         CpFil2Fil "C:\Users\cyy\Desktop\youtube.com_cookies.txt", strDirectory & "youtube.com_cookies.txt", True, True
     End If

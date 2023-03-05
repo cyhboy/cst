@@ -1,5 +1,5 @@
 
-Public Sub PttyParam(hold As Boolean)
+Public Sub PttyParam(Hold As Boolean)
     If testing Then
         Exit Sub
     End If
@@ -33,6 +33,15 @@ Public Sub PttyParam(hold As Boolean)
     If port = "" Then
         port = "22"
     End If
+    
+    Dim ppkPath As String: ppkPath = ""
+    Dim ppkFile As String
+    ppkFile = Cells(currentRow, 14)
+    If EndsWith(ppkFile, ".ppk") Or ppkFile = "private_key" Then
+        Dim ppkFolder As String
+        ppkFolder = Cells(currentRow, 13)
+        ppkPath = ppkFolder & ppkFile
+    End If
 
     If Trim(pass) = "" Then
         'ruid = Environ$("username")
@@ -62,7 +71,11 @@ Public Sub PttyParam(hold As Boolean)
     End If
 
     parameter = fqdn & " -l " & uid & " -pw " & pass & " -P " & port & " -m """ & commandPath & """ -t"
-
+    
+    If ppkPath <> "" Then
+        parameter = fqdn & " -l " & uid & " -i """ & ppkPath & """ -P " & port & " -m """ & commandPath & """ -t"
+    End If
+    
     Dim cntEXE As Integer
     cntEXE = CntExeRunning(ExtractEXE(path))
 
@@ -72,7 +85,7 @@ Public Sub PttyParam(hold As Boolean)
     'ShellRunMax path & parameter
     ShellRun path & parameter, False
 
-    If hold Then
+    If Hold Then
         While CntExeRunning(ExtractEXE(path)) - cntEXE > 0
             Sleep 3000
         Wend

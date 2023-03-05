@@ -53,6 +53,15 @@ Public Sub PttyRA()
         port = "22"
     End If
 
+    Dim ppkPath As String: ppkPath = ""
+    Dim ppkFile As String
+    ppkFile = Cells(currentRow, 14)
+    If EndsWith(ppkFile, ".ppk") Or ppkFile = "private_key" Then
+        Dim ppkFolder As String
+        ppkFolder = Cells(currentRow, 13)
+        ppkPath = ppkFolder & ppkFile
+    End If
+
     If pass = "" Then
         Dim propsMap As Variant
         Set propsMap = ReadPropertyInAppFiles("identity.ini")
@@ -70,6 +79,10 @@ Public Sub PttyRA()
     WriteTxt2Tmp "cd " & remoteFolder & Chr(13) & Chr(10) & cmd & Chr(13) & Chr(10) & "exit", commandPath
 
     parameter = fqdn & " -l " & uid & " -pw " & pass & " -P " & port & " -m """ & commandPath & """ -t"
+
+    If ppkPath <> "" Then
+        parameter = fqdn & " -l " & uid & " -i """ & ppkPath & """ -P " & port & " -m """ & commandPath & """ -t"
+    End If
 
     Dim cntEXE As Integer
     cntEXE = CntExeRunning(ExtractEXE(path))

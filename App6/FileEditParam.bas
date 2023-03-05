@@ -1,5 +1,5 @@
 
-Public Sub FileEditParam(hold As Boolean, isFilter As Boolean, path As String)
+Public Sub FileEditParam(Hold As Boolean, isFilter As Boolean, path As String)
     If testing Then
         Exit Sub
     End If
@@ -34,7 +34,7 @@ Public Sub FileEditParam(hold As Boolean, isFilter As Boolean, path As String)
         ' ShellRunHide path & parameter
         ShellRun path & parameter, False
     Next i
-    If hold Then
+    If Hold Then
         Dim exeName As String: exeName = ExtractEXE(path)
         While True = IsExeRunning(exeName)
             Sleep 5000

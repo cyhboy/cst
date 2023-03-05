@@ -37,11 +37,11 @@ Public Sub RplFil()
     Dim localPath As String
     localPath = Cells(currentRow, 9)
 
-    Dim fileName As String
-    fileName = Cells(currentRow, 11)
+    Dim filename As String
+    filename = Cells(currentRow, 11)
 
 
-    RplTxt4Fil localPath & fileName, orgTxt, newTxt
+    RplTxt4Fil localPath & filename, orgTxt, newTxt
 
 ErrorHandler:
     If Err.Number <> 0 Then

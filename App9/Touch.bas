@@ -7,14 +7,14 @@ Public Sub Touch()
     Dim currentRow As Integer
     currentRow = ActiveCell.Row
     
-    Dim fileName As String
-    fileName = Cells(currentRow, 11)
+    Dim filename As String
+    filename = Cells(currentRow, 11)
     Dim localFolder As String
     localFolder = Cells(currentRow, 9)
     
     Dim filePath As String
-    filePath = localFolder & fileName
-    If InStr(fileName, ".doc") > 0 Then
+    filePath = localFolder & filename
+    If InStr(filename, ".doc") > 0 Then
         Call TouchDoc
         Exit Sub
     End If

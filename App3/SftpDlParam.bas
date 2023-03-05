@@ -1,5 +1,5 @@
 
-Public Sub SftpDlParam(hold As Boolean)
+Public Sub SftpDlParam(Hold As Boolean)
     If testing Then
         Exit Sub
     End If
@@ -79,7 +79,7 @@ ErrorHandler:
         MyMsgBox Err.Number & " " & Err.Description, 30
     End If
 
-    If hold Then
+    If Hold Then
         Dim exeName As String: exeName = ExtractEXE(path)
         While True = IsExeRunning(exeName)
             Sleep 5000

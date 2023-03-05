@@ -1,13 +1,28 @@
 
-Public Sub RunAppParam(isHold As Boolean, isTest As Boolean, isKeep As Boolean)
+Public Sub RunAppParam(isHold As Boolean, isTest As Boolean, isKeep As Boolean, Optional isCll As Boolean = False, Optional loc As String = "middle")
     If testing Then
         Exit Sub
     End If
     Dim currentRow As Integer
     currentRow = ActiveCell.Row
+   
+    Dim currentColumn As Integer
+    If isCll Then
+        currentColumn = ActiveCell.Column
+    Else
+        currentColumn = 10
+    End If
+    
     Dim parameter As String
+    parameter = Cells(currentRow, currentColumn)
 
-    parameter = Cells(currentRow, 10)
+    If loc = "next" Then
+        Dim tempAry As Variant
+        tempAry = Split(parameter, "::")
+        parameter = tempAry(UBound(tempAry))
+        'MsgBox parameter
+        'Exit Sub
+    End If
 
     Dim arr As Variant
 

@@ -68,7 +68,7 @@ Private Sub Workbook_Open()
                 End If
             End If
         End If
-    Next
+    Next obj
 
     Set mFileObject = Nothing
     Set cFileObject = Nothing

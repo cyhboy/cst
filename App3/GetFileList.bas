@@ -8,22 +8,22 @@ Public Function GetFileList(fileSpec As String) As Variant
 
     Dim FileArray() As Variant
     Dim FileCount As Integer
-    Dim fileName As String
+    Dim filename As String
 
     On Error GoTo NoFilesFound
 
     FileCount = 0
-    fileName = Dir(fileSpec)
+    filename = Dir(fileSpec)
     ' MsgBox fileSpec
     ' MsgBox fileName
-    If fileName = "" Then GoTo NoFilesFound
+    If filename = "" Then GoTo NoFilesFound
 
         '   Loop until no more matching files are found
-        Do While fileName <> ""
+        Do While filename <> ""
             FileCount = FileCount + 1
             ReDim Preserve FileArray(1 To FileCount)
-            FileArray(FileCount) = fileName
-            fileName = Dir()
+            FileArray(FileCount) = filename
+            filename = Dir()
             'MsgBox FileName
         Loop
 

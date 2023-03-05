@@ -1,5 +1,5 @@
 
-Public Sub PowerShellRun(cmd As String, hold As Boolean)
+Public Sub PowerShellRun(cmd As String, Hold As Boolean)
     If testing Then
         Exit Sub
     End If

@@ -21,21 +21,31 @@ Public Sub DelVF()
     End If
 
     Dim localFolder As String
-    Dim fileName As String
+    Dim filename As String
     Dim orgFileName As String
     Dim videoFileName, audioFileName As String
     Dim currentRow As Integer
     currentRow = ActiveCell.Row
     localFolder = Cells(currentRow, 9)
-    fileName = Cells(currentRow, 13)
-    orgFileName = Left(fileName, InStrRev(fileName, ".") - 1)
+    filename = Cells(currentRow, 13)
+    orgFileName = Left(filename, InStrRev(filename, ".") - 1)
     Dim fileList As Variant
-    fileList = GetFileList(localFolder & orgFileName & ".f*")
-
-    If UBound(fileList) < 2 Then
+    fileList = GetFileList(localFolder & orgFileName & ".*")
+    
+    'MsgBox Dir(localFolder & orgFileName & ".*")
+    'Exit Sub
+    
+    If UBound(fileList) < 1 Then
         Exit Sub
     End If
 
+    If UBound(fileList) < 2 Then
+        videoFileName = fileList(1)
+        GoTo DELETE_FILE
+        'MsgBox videoFileName
+        'Exit Sub
+    End If
+    
     Dim fileSize As Double
     fileSize = 1.79769313486231E+308
 
@@ -43,7 +53,9 @@ Public Sub DelVF()
     Set fso = CreateObject("Scripting.FileSystemObject")
     Dim myFileObj As Object
     Dim myFile As Variant
-
+    
+    
+    
     For Each myFile In fileList
         Set myFileObj = fso.GetFile(localFolder & CStr(myFile))
         'MsgBox myFileObj.Name & FileLen(localFolder & CStr(myFile))
@@ -57,6 +69,7 @@ Public Sub DelVF()
 
     Set fso = Nothing
 
+DELETE_FILE:
     MyQuestionBox "delete video file in row? " & videoFileName, "Yes", "No", 5
     If confirmation = "No" Then
         Exit Sub

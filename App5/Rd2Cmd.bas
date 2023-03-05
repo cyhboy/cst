@@ -28,11 +28,11 @@ Public Sub Rd2Cmd()
     Dim localFolder As String
     localFolder = Cells(currentRow, 9)
 
-    Dim fileName As String
-    fileName = Cells(currentRow, 11)
+    Dim filename As String
+    filename = Cells(currentRow, 11)
 
     Dim fileContent As String
-    fileContent = ReadLineByFile(localFolder & fileName)
+    fileContent = ReadLineByFile(localFolder & filename)
 
     Cells(currentRow, 10) = Cells(currentRow, 10) & fileContent & Chr(10)
 

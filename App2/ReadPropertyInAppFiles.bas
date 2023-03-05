@@ -1,5 +1,5 @@
 
-Public Function ReadPropertyInAppFiles(fileName As String)
+Public Function ReadPropertyInAppFiles(filename As String)
     If testing Then
         Exit Function
     End If
@@ -8,7 +8,7 @@ Public Function ReadPropertyInAppFiles(fileName As String)
     Dim sPFSpec, sSect As String
 
     Set fso = CreateObject("Scripting.FileSystemObject")
-    sPFSpec = GetAppDrive() & "\" & fileName
+    sPFSpec = GetAppDrive() & "\" & filename
     'MsgBox sPFSpec
     Set dicProps = CreateObject("Scripting.Dictionary")
     Set oTS = fso.OpenTextFile(sPFSpec)
