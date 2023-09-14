@@ -42,9 +42,14 @@ Public Sub PlyVA()
     
     If InStr(parameter, "http") > 0 Then
         parameter = CutStrByStartEnd(parameter, "http", "$$", True)
-        If InStr(parameter, vbCrLf) > 0 Then
-            parameter = CutStrByStartEnd(parameter, "http", vbCrLf, True)
-        End If
+        While InStr(parameter, vbLf) > 0
+            'MsgBox "vbLf"
+            parameter = CutStrByStartEnd(parameter, "http", vbLf, True)
+        Wend
+        While InStr(parameter, vbCr) > 0
+            'MsgBox "vbCr"
+            parameter = CutStrByStartEnd(parameter, "http", vbCr, True)
+        Wend
     Else
         parameter = ""
     End If
@@ -88,7 +93,12 @@ Public Sub PlyVA()
     Dim extStr As String
     extStr = Json("videoFileName")
     extStr = Right(extStr, Len(extStr) - InStrRev(extStr, ".") + 1)
-    resultStr = Replace(resultStr, audioFile, Replace(Json("videoFileName"), extStr, ".opus"))
+    If extStr = "webm" Then
+        resultStr = Replace(resultStr, audioFile, Replace(Json("videoFileName"), extStr, ".opus"))
+    Else
+        resultStr = Replace(resultStr, audioFile, Replace(Json("videoFileName"), extStr, ".wma"))
+    End If
+    
     Cells(currentRow, 10) = resultStr
     Cells(currentRow, 8) = resultStr
     

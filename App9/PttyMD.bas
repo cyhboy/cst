@@ -4,22 +4,25 @@ Public Sub PttyMD()
         Exit Sub
     End If
 
-    '    On Error GoTo LineHandler
-    '    Dim subName As String
-    '362:     Err.Raise 1979
-    'LineHandler:
-    '    If Err.Number = 1979 Then
-    '        subName = GetSubName("AllSpecial", Erl)
-    '        If subName = "" Then
-    '            MsgBox "Process name is not available. Please contact administrator. "
-    '            'Exit Sub
-    '        Else
-    '            LogToDB subName
-    '        End If
-    '    End If
-    '    Resume Next
-
     On Error GoTo ErrorHandler
+
+    Dim n As Integer
+    n = Selection.count
+    If n > 1 Then
+        n = Selection.SpecialCells(xlCellTypeVisible).count
+    End If
+    If n > 1 Then
+        Dim curCell As Range
+        For Each curCell In Selection
+            If curCell.EntireColumn.Hidden = False And curCell.EntireRow.Hidden = False Then
+                curCell.Select
+                'MsgBox subName
+                RobotRunByParam "PttyMD"
+            End If
+        Next curCell
+        Exit Sub
+    End If
+
     Dim path As String
 
     Dim parameter As String
@@ -58,9 +61,15 @@ Public Sub PttyMD()
 
     ShellRunHide path & parameter
 
-    Dim exeName As String: exeName = ExtractEXE(path)
-    While True = IsExeRunning(exeName)
-        Sleep 5000
+    Dim killFlag As Boolean
+    While CntExeRunning(ExtractEXE(path)) - cntEXE > 0 And killFlag = False
+        Sleep 3000
+        If Now - LastModDate("C:\BAK\putty.log") > 3000 / 1000 / 60 / 24 Then
+            'MyQuestionBox "Do U want to kill", "Yes", "No", 6
+            'If confirmation = "Yes" Then
+            'killFlag = KillExeRunning(ExtractEXE(path))
+            'End If
+        End If
     Wend
 
     Dim pttyResult As String
@@ -77,12 +86,5 @@ ErrorHandler:
         MyMsgBox Err.Number & " " & Err.Description, 30
     End If
 
-    '    If "On" = ReadRegAR() Then
-    '        Dim exer As String
-    '        exer = Cells(currentRow, 16)
-    '        If InStr(exer, subName) = 0 Then
-    '            Cells(currentRow, 16) = Trim(exer & " " & subName)
-    '        End If
-    '    End If
 End Sub
 

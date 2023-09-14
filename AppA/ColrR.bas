@@ -31,7 +31,7 @@ Public Sub ColrR()
         If IsNull(.ColorIndex) Or IsEmpty(.ColorIndex) Then
             .ColorIndex = 1
         End If
-        If .ColorIndex >= 56 Or .ColorIndex < 1 Then
+        If .ColorIndex >= 55 Or .ColorIndex < 1 Then
             .ColorIndex = 1
         End If
 

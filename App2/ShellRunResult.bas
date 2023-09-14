@@ -19,7 +19,8 @@ Public Function ShellRunResult(cmd As String, Optional cmdLogFile As String = "C
     End If
 
     'MsgBox path
-
+    'Exit Function
+    
     Shell path, vbNormalFocus
     'Shell path, vbHide
 

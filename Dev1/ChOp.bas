@@ -9,7 +9,8 @@ Public Sub ChOp()
     Dim currentRow As Integer
     currentRow = ActiveCell.Row
     'path = "firefox.exe "
-    path = "chrome.exe "
+    'path = "chrome.exe "
+    path = "C:\AppFiles\chrome-win\chrome.exe "
     parameter = Cells(currentRow, 10)
     If InStr(parameter, "http") > 0 Then
         parameter = CutStrByStartEnd(parameter, "http", "$$", True)
